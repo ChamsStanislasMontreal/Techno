@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Option CHAMS au Collège Stanislas de Montréal (4e–3e) — une option stimulante pour aimer, comprendre et créer avec les sciences." />
+  <title>Option CHAMS (4e–3e) — Collège Stanislas de Montréal</title>
+
+  <style>
+    :root{
+      --stan-blue:#0f5aa6;
+      --stan-red:#d21f2b;
+      --bg0:#050812;
+      --bg1:#0a0f1a;
+
+      --ink:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.74);
+      --muted2:rgba(255,255,255,.58);
+
+      --stroke:rgba(255,255,255,.14);
+      --radius:18px;
+      --shadow: 0 14px 34px rgba(0,0,0,.36);
+      --max: 1120px;
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(900px 450px at 15% 10%, rgba(15,90,166,.22), transparent 55%),
+        radial-gradient(900px 450px at 85% 15%, rgba(210,31,43,.16), transparent 55%),
+        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 60%, #070a12 100%);
+      min-height:100vh;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:rgba(10,15,26,.62);
+      border-bottom:1px solid var(--stroke);
+    }
+    .bar{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:12px 0;
+    }
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
+    .mark{
+      width:34px; height:34px; border-radius:10px;
+      background: conic-gradient(from 210deg, var(--stan-blue), var(--stan-red), var(--stan-blue));
+      box-shadow:0 0 0 1px rgba(255,255,255,.16), 0 0 30px rgba(15,90,166,.25);
+    }
+    .brand b{letter-spacing:.2px}
+    .brand small{display:block; color:var(--muted2); font-size:12px; margin-top:1px}
+
+    nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    nav a{
+      text-decoration:none;
+      font-size:13px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+    }
+    nav a:hover{border-color:rgba(255,255,255,.20); background:rgba(255,255,255,.05)}
+
+    .cta{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      font-weight:900;
+      text-decoration:none;
+      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.26)}
+    .btn.primary{
+      border-color:rgba(210,31,43,.45);
+      background:linear-gradient(90deg, rgba(210,31,43,.92), rgba(15,90,166,.90));
+      box-shadow:0 10px 26px rgba(0,0,0,.35), 0 0 26px rgba(210,31,43,.14);
+    }
+    .btn .dot{width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.9); box-shadow:0 0 0 4px rgba(255,255,255,.10)}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .panel{
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    /* HERO */
+    .hero{padding:38px 0 10px}
+    .heroGrid{display:grid; grid-template-columns:1.15fr .85fr; gap:16px}
+    .heroMain{padding:24px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.2px;
+    }
+    .kicker code{font-family:var(--mono); color:rgba(255,255,255,.88)}
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(26px, 3.4vw, 42px);
+      line-height:1.08;
+      letter-spacing:-.6px;
+    }
+    .lead{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      max-width:72ch;
+    }
+
+    .sparkRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .spark{
+      display:flex; align-items:flex-start; gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      min-width:220px;
+      flex:1 1 220px;
+    }
+    .spark .icon{
+      width:34px; height:34px; border-radius:12px;
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.18);
+      font-family:var(--mono);
+      font-weight:900;
+      color:#fff;
+      box-shadow:0 0 0 6px rgba(15,90,166,.08);
+      flex:0 0 auto;
+    }
+    .spark b{display:block; margin-bottom:2px}
+    .spark p{margin:0; color:var(--muted); line-height:1.5; font-size:13px}
+
+    /* En bref */
+    .heroSide{padding:18px}
+    .metaTitle{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:14px 14px 10px; border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .metaTitle b{font-size:14px}
+    .metaTitle span{font-family:var(--mono); font-size:12px; color:var(--muted2)}
+    .metaBody{padding:14px}
+    .metaList{display:grid; gap:12px}
+    .metaItem{
+      padding:12px;
+      border-radius:14px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .metaItem b{display:block; font-size:13px; margin-bottom:6px}
+    .metaItem p{margin:0; color:var(--muted); font-size:13px; line-height:1.55}
+
+    /* Sections */
+    section{padding:16px 0}
+    .secHead{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin:0 0 12px}
+    .secHead h2{margin:0; font-size: clamp(18px, 2vw, 24px); letter-spacing:-.3px}
+    .secHead p{margin:0; color:var(--muted); max-width:74ch; line-height:1.6}
+
+    .cols{display:grid; grid-template-columns:repeat(12, 1fr); gap:14px}
+    .col12{grid-column:span 12}
+    .col6{grid-column:span 6}
+    .col4{grid-column:span 4}
+
+    .panel h3{margin:0 0 8px; font-size:16px}
+    .panel p{margin:0; color:var(--muted); line-height:1.6}
+    .panel ul{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.6}
+    .panel li{margin:6px 0}
+
+    /* Disciplines */
+    .disc{
+      position:relative;
+      padding:16px;
+      border-radius:var(--radius);
+      border:1px solid var(--stroke);
+      background:
+        radial-gradient(800px 160px at 20% 0%, rgba(15,90,166,.16), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      overflow:hidden;
+    }
+    .disc:before{
+      content:"";
+      position:absolute; inset:-1px -1px auto -1px;
+      height:3px;
+      background:linear-gradient(90deg, var(--stan-red), var(--stan-blue));
+      opacity:.85;
+    }
+    .discHead{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .discHead h3{margin:0; font-size:16px}
+    .discHead code{
+      font-family:var(--mono);
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,.14);
+      padding:6px 8px;
+      border-radius:999px;
+      background:rgba(0,0,0,.15);
+      white-space:nowrap;
+    }
+    .disc p{margin:10px 0 0; color:var(--muted); line-height:1.6}
+    .disc ul{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.6}
+    .disc li{margin:6px 0}
+
+    /* Vidéos disciplines */
+    .videoGrid{display:grid; grid-template-columns:repeat(12,1fr); gap:14px; margin-top:14px}
+    .vid{
+      grid-column:span 4;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      overflow:hidden;
+      background:rgba(255,255,255,.04);
+    }
+    .vid .frame{
+      aspect-ratio:16/9;
+      background:#000;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    iframe{width:100%; height:100%; border:0; display:block}
+    .vid .body{padding:12px}
+    .vid b{display:block; font-size:14px; margin-bottom:4px}
+    .vid p{margin:0; color:var(--muted); font-size:13px; line-height:1.5}
+
+    /* Approche pédagogique innovante */
+    .approche{display:grid; gap:10px}
+    .line{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    .line .t{
+      font-family:var(--mono);
+      font-weight:900;
+      color:#fff;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.18);
+      flex:0 0 auto;
+    }
+    .line b{display:block; margin-bottom:2px}
+    .line p{margin:0; color:var(--muted); line-height:1.5}
+
+    /* Projets */
+    .projectHero{
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid rgba(210,31,43,.32);
+      background:
+        radial-gradient(700px 260px at 15% 0%, rgba(210,31,43,.18), transparent 60%),
+        radial-gradient(700px 260px at 85% 10%, rgba(15,90,166,.16), transparent 60%),
+        rgba(255,255,255,.04);
+    }
+    .projectHero h3{margin:0 0 8px; font-size:16px}
+    .projectHero p{margin:0; color:var(--muted); line-height:1.6}
+    .pillRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .pill{
+      font-family:var(--mono);
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--muted);
+    }
+
+    /* Partenariats */
+    .callout{
+      padding:16px;
+      border-radius:var(--radius);
+      border:1px solid rgba(15,90,166,.35);
+      background:radial-gradient(700px 240px at 20% 0%, rgba(15,90,166,.18), rgba(255,255,255,.04));
+    }
+    .callout h3{margin:0 0 6px; font-size:16px}
+    .callout p{margin:0; color:var(--muted); line-height:1.6}
+
+    /* FAQ */
+    details{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      border-radius:var(--radius);
+      padding:12px 14px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      font-weight:900;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary .plus{
+      width:28px; height:28px; border-radius:10px;
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.18);
+      font-family:var(--mono);
+      color:var(--muted);
+      flex:0 0 auto;
+    }
+    details[open] summary .plus{color:#fff; border-color:rgba(255,255,255,.22)}
+    details p{margin:10px 0 0; color:var(--muted); line-height:1.6}
+
+    footer{
+      padding:22px 0 36px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+    }
+    .fine{font-family:var(--mono); font-size:12px; color:var(--muted2); line-height:1.6}
+
+    @media (max-width: 940px){
+      .heroGrid{grid-template-columns:1fr}
+      nav{display:none}
+      .col6,.col4{grid-column:span 12}
+      .vid{grid-column:span 12}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="bar">
+        <a class="brand" href="#top">
+          <span class="mark" aria-hidden="true"></span>
+          <span>
+            <b>Option CHAMS</b>
+            <small>4e–3e • Maths • Physique-Chimie • Technologie</small>
+          </span>
+        </a>
+
+        <nav aria-label="Navigation">
+          <a href="#dispositif">Découvrir</a>
+          <a href="#disciplines">Disciplines</a>
+          <a href="#approche">Approche</a>
+          <a href="#projets">Projets phares</a>
+          <a href="#partenariats">Partenariats</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="cta">
+          <a class="btn" href="#faq"><span class="dot" aria-hidden="true"></span>Questions fréquentes</a>
+          <a class="btn primary" href="#dispositif">Découvrir l’option</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div class="card heroMain">
+            <span class="kicker">Nouveau à Stanislas • <code>CHAMS</code> • science & tech en pédagogie de projet</span>
+            <h1>Une option stimulante pour aimer, comprendre et créer avec les sciences.</h1>
+
+            <p class="lead">
+              CHAMS, c’est l’option qui transforme la curiosité en <b>expériences</b>, en <b>prototypes</b> et en <b>réalisations</b>.
+              Pour des élèves de 4e et 3e qui ont envie de <b>faire</b> autant que de <b>comprendre</b>.
+              <br/>
+              <span style="color:var(--muted2)">
+                À Stan, l’option se vit comme une aventure collective portée par plusieurs disciplines.
+              </span>
+            </p>
+
+            <div class="cta">
+              <a class="btn primary" href="#dispositif">Découvrir l’option</a>
+              <a class="btn" href="#faq">Questions fréquentes</a>
+              <a class="btn" href="#projets">Projets phares</a>
+            </div>
+
+            <!-- Ce que votre enfant va adorer -->
+            <div class="sparkRow" aria-label="Ce que l'on va aimer">
+              <div class="spark">
+                <div class="icon">01</div>
+                <div>
+                  <b>Fabrication de prototypes</b>
+                  <p>Du design au prototype : on construit, on assemble, on améliore.</p>
+                </div>
+              </div>
+              <div class="spark">
+                <div class="icon">02</div>
+                <div>
+                  <b>Laboratoires</b>
+                  <p>Mesures, essais, comparatifs : on observe et on conclut.</p>
+                </div>
+              </div>
+              <div class="spark">
+                <div class="icon">03</div>
+                <div>
+                  <b>Présenter</b>
+                  <p>On explique, on démontre, on partage : des productions qui donnent envie.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EN BREF -->
+          <aside class="card heroSide" aria-label="En bref">
+            <div class="metaTitle">
+              <b>En bref</b>
+              <span>Lecture : 5 min</span>
+            </div>
+            <div class="metaBody">
+              <div class="metaList">
+                <div class="metaItem">
+                  <b>Pour qui ?</b>
+                  <p>
+                    Pour les élèves de 4e et 3e qui aiment les maths, les sciences, la technologie et les projets concrets.
+                  </p>
+                </div>
+                <div class="metaItem">
+                  <b>Ce que ça change</b>
+                  <p>
+                    Des temps dédiés au projet, des liens renforcés entre disciplines, des productions visibles.
+                  </p>
+                </div>
+
+                <div class="metaItem">
+                  <b>Volume horaire</b>
+                  <p>
+                    2&nbsp;h par semaine dédiées à l’option (en complément de l’emploi du temps).
+                  </p>
+                </div>
+                <div class="metaItem">
+                  <b>Parité</b>
+                  <p>
+                    Une attention particulière est portée à l’équilibre filles/garçons au sein du groupe.
+                  </p>
+                </div>
+                <div class="metaItem">
+                  <b>Esprit du dispositif</b>
+                  <p>
+                    Exigence + plaisir d’apprendre + coopération + créativité.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- DÉCOUVRIR -->
+    <section id="dispositif">
+      <div class="wrap">
+        <div class="secHead">
+          <div>
+            <h2>Découvrir l’option</h2>
+            <p>Des sciences plus vivantes : on apprend en faisant, et on comprend en expliquant.</p>
+          </div>
+        </div>
+
+        <div class="cols">
+          <div class="panel col6">
+            <h3>Ce que les élèves vivent</h3>
+            <ul>
+              <li>Des <b>défis</b> et des <b>projets</b> qui donnent envie de se dépasser.</li>
+              <li>Des temps dédiés pour <b>concevoir</b>, <b>tester</b>, <b>améliorer</b>.</li>
+              <li>Une place pour la <b>créativité</b>… et l’envie d’expliquer sa démarche.</li>
+            </ul>
+          </div>
+
+          <div class="panel col6">
+            <h3>Ce que ça développe</h3>
+            <ul>
+              <li><b>Méthode</b> : avancer par étapes, documenter, expliquer.</li>
+              <li><b>Confiance</b> : oser essayer, apprendre de ses tests.</li>
+              <li><b>Esprit d’équipe</b> : construire et présenter ensemble.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+
+        <!-- Zone vidéos profs -->
+                <div class="panel" style="margin-top:14px">
+                  <h3>3 mini-vidéos par les enseignants</h3>
+                  
+        
+                  <div class="videoGrid">
+                    <div class="vid">
+                      <div class="frame">
+                        <iframe title="Présentation Technologie" src="https://www.youtube.com/embed/bh5yamGkoss?si=f5yP0BYm0N4HhXLU" loading="lazy"
+                          referrerpolicy="strict-origin-when-cross-origin"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen></iframe>
+                      </div>
+                      <div class="body">
+                        <b>Technologie</b>
+                        <p>2–3 min • “Concevoir et fabriquer”</p>
+                      </div>
+                    </div>
+
+                    <div class="vid">
+                      <div class="frame">
+                        <iframe title="Présentation Mathématiques" src="VIDEO_MATHS_URL" loading="lazy"
+                          referrerpolicy="strict-origin-when-cross-origin"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen></iframe>
+                      </div>
+                      <div class="body">
+                        <b>Mathématiques</b>
+                        <p>2–3 min • “Raisonner pour construire”</p>
+                      </div>
+                    </div>
+
+                    <div class="vid">
+                      <div class="frame">
+                        <iframe title="Présentation Physique-Chimie" src="VIDEO_PHYSIQUE_URL" loading="lazy"
+                          referrerpolicy="strict-origin-when-cross-origin"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen></iframe>
+                      </div>
+                      <div class="body">
+                        <b>Physique-Chimie</b>
+                        <p>2–3 min • “Mesurer et comprendre”</p>
+                      </div>
+                    </div>
+                  </div></div>
+        
+                  <p class="fine" style="margin:10px 0 0">
+                    Remplacer <code>VIDEO_*_URL</code> par des URLs d’intégration (ex. YouTube <code>.../embed/XXXX</code>).
+                  </p>
+                </div>
+
+    </section>
+
+    <!-- DISCIPLINES -->
+    <section id="disciplines">
+      <div class="wrap">
+        <div class="secHead">
+          <div>
+            <h2>Les 3 disciplines (ensemble)</h2>
+            <p>Mathématiques, Physique-Chimie, Technologie : chacune apporte ses outils, tout se rejoint dans les projets.</p>
+          </div>
+        </div>
+
+        <div class="cols">
+          <div class="disc col4">
+            <div class="discHead">
+              <h3>Mathématiques</h3>
+              <code>raisonner • modéliser</code>
+            </div>
+            <p>Structurer une démarche et “faire parler” les données.</p>
+            <ul>
+              <li>Stratégies de résolution</li>
+              <li>Modélisation / optimisation</li>
+              <li>Données & validation</li>
+            </ul>
+          </div>
+
+          <div class="disc col4">
+            <div class="discHead">
+              <h3>Physique-Chimie</h3>
+              <code>tester • comprendre</code>
+            </div>
+            <p>Observer, mesurer, conclure… et argumenter.</p>
+            <ul>
+              <li>Mesures & protocoles</li>
+              <li>Ondes, énergie, matériaux</li>
+              <li>Interpréter des résultats</li>
+            </ul>
+          </div>
+
+          <div class="disc col4">
+            <div class="discHead">
+              <h3>Technologie</h3>
+              <code>concevoir • fabriquer</code>
+            </div>
+            <p>De l’idée au prototype : design, essais, amélioration.</p>
+            <ul>
+              <li>CAO & impression 3D</li>
+              <li>Assemblage & qualité</li>
+              <li>Dossier technique</li>
+            </ul>
+          </div>
+        </div>
+
+        
+      </div>
+    </section>
+
+    <!-- APPROCHE PÉDAGOGIQUE -->
+    <section id="approche">
+      <div class="wrap">
+        <div class="secHead">
+          <div>
+            <h2>Une approche pédagogique innovante</h2>
+            <p>un dispositif basé sur la pédagogie de projet.</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="approche">
+            <div class="line">
+              <div class="t">01</div>
+              <div>
+                <b>Lancement & choix du fil rouge</b>
+                <p>Présentation du cadre, formation des équipes, premiers tests, carnet de bord.</p>
+              </div>
+            </div>
+            <div class="line">
+              <div class="t">02</div>
+              <div>
+                <b>Conception & premières itérations</b>
+                <p>Prototypage, mesures, validation d’hypothèses, retours structurés.</p>
+              </div>
+            </div>
+            <div class="line">
+              <div class="t">03</div>
+              <div>
+                <b>Production & mise en qualité</b>
+                <p>Version “présentable”, documentation, critères d’évaluation explicités.</p>
+              </div>
+            </div>
+            <div class="line">
+              <div class="t">04</div>
+              <div>
+                <b>Présentation / exposition</b>
+                <p>Communication, démonstration, argumentation, bilan et valorisation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETS PHARES -->
+    <section id="projets">
+      <div class="wrap">
+        <div class="secHead">
+          <div>
+            <h2>Projets phares</h2>
+            <p>Des projets concrets et valorisants : on fabrique, on teste, et on présente.</p>
+          </div>
+        </div>
+
+        <div class="projectHero">
+          <h3>Guitares hybrides : impression 3D + pièces en bois</h3>
+          <p>
+            Projet signature CHAMS : construire une guitare en combinant <b>fabrication numérique</b> (impression 3D)
+            et <b>travail du bois</b> sur certaines pièces du body. Une aventure maker qui touche aux matériaux,
+            à la précision, à l’assemblage… et à l’acoustique.
+          </p>
+          <div class="pillRow" aria-label="Ce qu'on fait dans le projet">
+            <span class="pill">Design & CAO</span>
+            <span class="pill">Impression 3D</span>
+            <span class="pill">Pièces bois</span>
+            <span class="pill">Tests & mesures</span>
+            <span class="pill">Démo / expo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTENARIATS -->
+    <section id="partenariats">
+      <div class="wrap">
+        <div class="secHead">
+          <div>
+            <h2>Partenariats, sorties, intervenants</h2>
+            <p>Des rencontres qui inspirent : pour voir les sciences “en vrai” et donner du sens aux projets.</p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <h3>Des sorties qui comptent</h3>
+          <p>
+            Les sorties et rencontres ne sont pas “en plus” : elles servent le projet. Elles permettent de découvrir des lieux,
+            des métiers, des méthodes, et d’ouvrir des horizons.
+          </p>
+          <div class="pillRow" aria-label="Exemples">
+            <span class="pill">Visites (labo / atelier)</span>
+            <span class="pill">Rencontres (experts, makers)</span>
+            <span class="pill">Ateliers pratiques</span>
+            <span class="pill">Événements / expo</span>
+          </div>
+        </div>
+
+        <div class="cols" style="margin-top:14px">
+          <div class="panel col6">
+            <h3>Pourquoi c’est motivant pour les élèves</h3>
+            <ul>
+              <li>Ils voient <b>à quoi servent</b> les notions apprises en classe.</li>
+              <li>Ils rencontrent des personnes qui <b>font</b> : ça donne envie.</li>
+              <li>Ils reviennent avec des idées… et les transforment en prototypes.</li>
+            </ul>
+          </div>
+          <div class="panel col6">
+            <h3>Ce que ça apporte aux familles</h3>
+            <ul>
+              <li>Une option qui valorise l’<b>autonomie</b> et la <b>méthode</b>.</li>
+              <li>Des productions visibles, présentées et expliquées.</li>
+              <li>Un parcours qui aide à se projeter (culture scientifique, métiers, études).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="wrap">
+        <div class="secHead">
+          <div>
+            <h2>Questions fréquentes</h2>
+            <p>Clair, simple, rassurant.</p>
+          </div>
+        </div>
+
+        <details>
+          <summary><span>Est-ce que ça remplace es matières Physiques, technologie et mathématiques ?</span><span class="plus">+</span></summary>
+          <p>Non. Toutes les matières restent au programme : l’option propose surtout une manière plus vivante de pratiquer les sciences.</p>
+        </details>
+
+        <details>
+          <summary><span>Faut-il être “excellent” en sciences ?</span><span class="plus">+</span></summary>
+          <p>On cherche surtout la motivation et la curiosité. Les projets aident à progresser en méthode, confiance et organisation.</p>
+        </details>
+
+        <details>
+          <summary><span>Comment candidater ?</span><span class="plus">+</span></summary>
+          <p>Les modalités seront communiquées par le Collège (places limitées). Un dossier simple peut être demandé.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="fine">
+        © <span id="year"></span> • Collège Stanislas de Montréal • Option CHAMS (page d’information)
+        <br/>À personnaliser : liens candidature, contacts officiels, URLs des vidéos.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('details').forEach(d => {
+      const plus = d.querySelector('.plus');
+      const sync = () => plus.textContent = d.open ? '−' : '+';
+      sync();
+      d.addEventListener('toggle', sync);
+    });
+  </script>
+</body>
+</html>
